@@ -7,45 +7,45 @@
         },
         "class_type": "CheckpointLoaderSimple",
         "_meta": {
-          "title": "CheckpointLoaderSimple"
+          "title": "Load Checkpoint"
         }
       },
       "6": {
         "inputs": {
           "text": "young boy adventurer, spiky brown hair, brown eyes, light blue short-sleeve tunic with yellow shoulder trim, brown leather belt with utility pouches, dark brown pants, brown leather boots \n  with straps, 2D HD illustration style, anime-inspired, clean lineart, flat colors with subtle shading, full body, neutral idle pose, white background",
           "clip": [
-            "5",
+            "16",
             1
           ]
         },
         "class_type": "CLIPTextEncode",
         "_meta": {
-          "title": "CLIPTextEncode"
+          "title": "CLIP Text Encode (Prompt)"
         }
       },
       "7": {
         "inputs": {
           "text": "watermark, text",
           "clip": [
-            "5",
+            "16",
             1
           ]
         },
         "class_type": "CLIPTextEncode",
         "_meta": {
-          "title": "CLIPTextEncode"
+          "title": "CLIP Text Encode (Prompt)"
         }
       },
       "8": {
         "inputs": {
-          "seed": 258205545396975,
+          "seed": 665562239071222,
           "steps": 20,
           "cfg": 8,
           "sampler_name": "euler",
           "scheduler": "simple",
           "denoise": 1,
           "model": [
-            "5",
+            "16",
             0
           ],
           "positive": [
@@ -68,11 +68,13 @@
       },
       "9": {
         "inputs": {
-          "value": 512
+          "width": 512,
+          "height": 512,
+          "batch_size": 1
         },
         "class_type": "EmptyLatentImage",
         "_meta": {
-          "title": "EmptyLatentImage"
+          "title": "Empty Latent Image"
         }
       },
       "10": {
@@ -84,7 +86,7 @@
         },
         "class_type": "PreviewImage",
         "_meta": {
-          "title": "PreviewImage"
+          "title": "Preview Image"
         }
       },
       "11": {
@@ -100,7 +102,39 @@
         },
         "class_type": "VAEDecode",
         "_meta": {
-          "title": "VAEDecode"
+          "title": "VAE Decode"
+        }
+      },
+      "16": {
+        "inputs": {
+          "lora_name": "ton_lora.safetensors",
+          "strength_model": 1,
+          "strength_clip": 1,
+          "model": [
+            "5",
+            0
+          ],
+          "clip": [
+            "5",
+            1
+          ]
+        },
+        "class_type": "LoraLoader",
+        "_meta": {
+          "title": "Load LoRA (Model and CLIP)"
+        }
+      },
+      "17": {
+        "inputs": {
+          "filename_prefix": "ComfyUI",
+          "images": [
+            "11",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "Save Image"
         }
       }
     }
