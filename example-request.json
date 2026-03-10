@@ -1,0 +1,108 @@
+{
+  "input": {
+    "workflow": {
+      "5": {
+        "inputs": {
+          "ckpt_name": "v1-5-pruned-emaonly.safetensors"
+        },
+        "class_type": "CheckpointLoaderSimple",
+        "_meta": {
+          "title": "CheckpointLoaderSimple"
+        }
+      },
+      "6": {
+        "inputs": {
+          "text": "young boy adventurer, spiky brown hair, brown eyes, light blue short-sleeve tunic with yellow shoulder trim, brown leather belt with utility pouches, dark brown pants, brown leather boots \n  with straps, 2D HD illustration style, anime-inspired, clean lineart, flat colors with subtle shading, full body, neutral idle pose, white background",
+          "clip": [
+            "5",
+            1
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "7": {
+        "inputs": {
+          "text": "watermark, text",
+          "clip": [
+            "5",
+            1
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "8": {
+        "inputs": {
+          "seed": 258205545396975,
+          "steps": 20,
+          "cfg": 8,
+          "sampler_name": "euler",
+          "scheduler": "simple",
+          "denoise": 1,
+          "model": [
+            "5",
+            0
+          ],
+          "positive": [
+            "6",
+            0
+          ],
+          "negative": [
+            "7",
+            0
+          ],
+          "latent_image": [
+            "9",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "9": {
+        "inputs": {
+          "value": 512
+        },
+        "class_type": "EmptyLatentImage",
+        "_meta": {
+          "title": "EmptyLatentImage"
+        }
+      },
+      "10": {
+        "inputs": {
+          "images": [
+            "11",
+            0
+          ]
+        },
+        "class_type": "PreviewImage",
+        "_meta": {
+          "title": "PreviewImage"
+        }
+      },
+      "11": {
+        "inputs": {
+          "samples": [
+            "8",
+            0
+          ],
+          "vae": [
+            "5",
+            2
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      }
+    }
+  }
+}
